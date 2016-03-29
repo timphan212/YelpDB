@@ -11,5 +11,11 @@ package yelpdb;
  * @author Tim
  */
 public class hw3 {
-    
+    public static void main(String[] args) {
+        try {
+            populate.tableSetup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

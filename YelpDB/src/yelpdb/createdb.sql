@@ -47,7 +47,7 @@ CREATE TABLE Reviews (
 	funnyVotes INTEGER,
 	usefulVotes INTEGER,
 	coolVotes INTEGER,
-	reviewText VARCHAR2(1000),
+	reviewText VARCHAR2(3000),
 	FOREIGN KEY(businessID) REFERENCES Businesses(businessID),
 	FOREIGN KEY(author) REFERENCES YelpUser(yelpID)
 );

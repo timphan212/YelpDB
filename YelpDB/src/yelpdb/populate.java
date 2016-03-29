@@ -19,7 +19,7 @@ import java.util.Map;
  * @author Timothy
  */
 public class populate {
-    public static void main(String[] args) throws SQLException, FileNotFoundException, IOException {
+    public static void tableSetup() throws SQLException, FileNotFoundException, IOException {
         /*try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException cnfe) {
@@ -30,6 +30,8 @@ public class populate {
         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orclg", "scott", "tiger");
         System.out.println("Starting insertions...");
         parseBusinesses(conn);
+        parseUsers(conn);
+        parseReviews(conn);
         System.out.println("Insertions completed.");
         conn.close();
         
@@ -39,10 +41,10 @@ public class populate {
         //need to change directory and remove package to run without netbeans
         BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/yelp_business.json"));
         String line = br.readLine();
+        
         while(line != null) {
             JsonElement ele = new JsonParser().parse(line);
             JsonObject obj = ele.getAsJsonObject();
-            
             String bid = obj.get("business_id").getAsString();
             String addr = obj.get("full_address").getAsString();
             String available = obj.get("open").getAsString();
@@ -53,12 +55,14 @@ public class populate {
             JsonObject hours = obj.getAsJsonObject("hours").getAsJsonObject();
             JsonArray categories = obj.getAsJsonArray("categories");
             JsonObject attributes = obj.getAsJsonObject("attributes").getAsJsonObject();
-            //createBusinesses(conn, bid, addr, available, city, state, name, rating);
-            //createBusinessHours(conn, bid, hours);
-            //createBusinessCategories(conn, bid, categories);
-            //createBusinessAttributes(conn, bid, attributes);
+            createBusinesses(conn, bid, addr, available, city, state, name, rating);
+            createBusinessHours(conn, bid, hours);
+            createBusinessCategories(conn, bid, categories);
+            createBusinessAttributes(conn, bid, attributes);
             line = br.readLine();
         }
+        
+        br.close();
     }
 
     private static void createBusinesses(Connection conn, String bid, String addr, String available, 
@@ -131,5 +135,74 @@ public class populate {
             }
             
         }
+    }
+
+    private static void parseUsers(Connection conn) throws FileNotFoundException, IOException, SQLException {
+        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/yelp_user.json"));
+        String line = br.readLine();
+        
+        while(line != null) {
+            JsonElement ele = new JsonParser().parse(line);
+            JsonObject obj = ele.getAsJsonObject();
+            String userid = obj.get("user_id").getAsString();
+            String name = obj.get("name").getAsString();
+            createUsers(conn, userid, name);
+            line = br.readLine();            
+        }
+        
+        br.close();
+    }
+
+    private static void createUsers(Connection conn, String userid, String name) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO YelpUser VALUES(?, ?)");
+        ps.setString(1, userid);
+        ps.setString(2, name);
+        ps.executeUpdate();
+        ps.close();
+    }
+
+    private static void parseReviews(Connection conn) throws FileNotFoundException, IOException, SQLException {
+        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/yelp_review.json"));
+        String line = br.readLine();
+        
+        while(line != null) {
+            JsonElement ele = new JsonParser().parse(line);
+            JsonObject obj = ele.getAsJsonObject();
+            String reviewid = obj.get("review_id").getAsString();
+            int rating = obj.get("stars").getAsInt();
+            String userid = obj.get("user_id").getAsString();
+            String bid = obj.get("business_id").getAsString();
+            String date = obj.get("date").getAsString();
+            String text = obj.get("text").getAsString();
+            JsonObject votes = obj.get("votes").getAsJsonObject();
+            int fvotes = votes.get("funny").getAsInt();
+            int uvotes = votes.get("useful").getAsInt();
+            int cvotes = votes.get("cool").getAsInt();
+            
+            if(text.length() > 3000) {
+                text = text.substring(0, 2999);
+            }
+            
+            createReviews(conn, reviewid, rating, userid, bid, date, text, fvotes, uvotes, cvotes);
+            line = br.readLine();
+        }
+        
+        br.close();
+    }
+
+    private static void createReviews(Connection conn, String reviewid, int rating, String userid, String bid, String date,
+            String text, int fvotes, int uvotes, int cvotes) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO Reviews VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ps.setString(1, reviewid);
+        ps.setInt(2, rating);
+        ps.setString(3, userid);
+        ps.setString(4, bid);
+        ps.setDate(5, java.sql.Date.valueOf(date));
+        ps.setInt(6, fvotes);
+        ps.setInt(7, uvotes);
+        ps.setInt(8, cvotes);
+        ps.setString(9, text);
+        ps.executeUpdate();
+        ps.close();
     }
 }
