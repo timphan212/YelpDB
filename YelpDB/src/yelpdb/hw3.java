@@ -6,6 +6,18 @@
 
 package yelpdb;
 
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+
 /**
  *
  * @author Tim
@@ -111,22 +123,67 @@ public class hw3 extends javax.swing.JFrame {
         mainCategoriesScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         activeCheckBox.setText("Active Life");
+        activeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activeCheckBoxActionPerformed(evt);
+            }
+        });
 
         artsCheckBox.setText("Arts & Entertainment");
+        artsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                artsCheckBoxActionPerformed(evt);
+            }
+        });
 
         autoCheckBox.setText("Automotive");
+        autoCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoCheckBoxActionPerformed(evt);
+            }
+        });
 
         carCheckBox.setText("Car Rental");
+        carCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carCheckBoxActionPerformed(evt);
+            }
+        });
 
         cafesCheckBox.setText("Cafes");
+        cafesCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cafesCheckBoxActionPerformed(evt);
+            }
+        });
 
         beautyCheckBox.setText("Beauty & Spas");
+        beautyCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beautyCheckBoxActionPerformed(evt);
+            }
+        });
 
         convenienceCheckBox.setText("Convenience Stores");
+        convenienceCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                convenienceCheckBoxActionPerformed(evt);
+            }
+        });
 
         dentistsCheckBox.setText("Dentists");
+        dentistsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dentistsCheckBoxActionPerformed(evt);
+            }
+        });
 
         doctorsCheckBox.setText("Doctors");
+        doctorsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorsCheckBoxActionPerformed(evt);
+            }
+        });
 
         drugstoresCheckBox.setText("Drugstores");
         drugstoresCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -136,40 +193,130 @@ public class hw3 extends javax.swing.JFrame {
         });
 
         departmentCheckBox.setText("Department Stores");
+        departmentCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentCheckBoxActionPerformed(evt);
+            }
+        });
 
         eduCheckBox.setText("Education");
+        eduCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eduCheckBoxActionPerformed(evt);
+            }
+        });
 
         eventCheckBox.setText("Event Planning & Services");
+        eventCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventCheckBoxActionPerformed(evt);
+            }
+        });
 
         flowersCheckBox.setText("Flowers & Gifts");
+        flowersCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flowersCheckBoxActionPerformed(evt);
+            }
+        });
 
         foodCheckBox.setText("Food");
+        foodCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodCheckBoxActionPerformed(evt);
+            }
+        });
 
         healthCheckBox.setText("Health & Medical");
+        healthCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                healthCheckBoxActionPerformed(evt);
+            }
+        });
 
         homeCheckBox.setText("Home Services");
+        homeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeCheckBoxActionPerformed(evt);
+            }
+        });
 
         gardenCheckBox.setText("Home & Garden");
+        gardenCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gardenCheckBoxActionPerformed(evt);
+            }
+        });
 
         hospitalsCheckBox.setText("Hospitals");
+        hospitalsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hospitalsCheckBoxActionPerformed(evt);
+            }
+        });
 
         hotelsCheckBox.setText("Hotels & Travel");
+        hotelsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotelsCheckBoxActionPerformed(evt);
+            }
+        });
 
         hardwareCheckBox.setText("Hardware Stores");
+        hardwareCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardwareCheckBoxActionPerformed(evt);
+            }
+        });
 
         groceryCheckBox.setText("Grocery");
+        groceryCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groceryCheckBoxActionPerformed(evt);
+            }
+        });
 
         medicalCheckBox.setText("Medical Centers");
+        medicalCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicalCheckBoxActionPerformed(evt);
+            }
+        });
 
         nurseriesCheckBox.setText("Nurseries & Gardening");
+        nurseriesCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nurseriesCheckBoxActionPerformed(evt);
+            }
+        });
 
         nightlifeCheckBox.setText("Nightlife");
+        nightlifeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nightlifeCheckBoxActionPerformed(evt);
+            }
+        });
 
         restaurantsCheckBox.setText("Restaurants");
+        restaurantsCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restaurantsCheckBoxActionPerformed(evt);
+            }
+        });
 
         shoppingCheckBox.setText("Shopping");
+        shoppingCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shoppingCheckBoxActionPerformed(evt);
+            }
+        });
 
         transportCheckBox.setText("Transportation");
+        transportCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transportCheckBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainCategoriesPanelLayout = new javax.swing.GroupLayout(mainCategoriesPanel);
         mainCategoriesPanel.setLayout(mainCategoriesPanelLayout);
@@ -189,6 +336,7 @@ public class hw3 extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(mainCategoriesPanelLayout.createSequentialGroup()
                         .addGroup(mainCategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(foodCheckBox)
                             .addComponent(departmentCheckBox)
                             .addComponent(eduCheckBox)
                             .addComponent(eventCheckBox)
@@ -203,7 +351,6 @@ public class hw3 extends javax.swing.JFrame {
                             .addComponent(doctorsCheckBox)
                             .addComponent(drugstoresCheckBox)
                             .addComponent(flowersCheckBox)
-                            .addComponent(foodCheckBox)
                             .addComponent(healthCheckBox)
                             .addComponent(nurseriesCheckBox)
                             .addComponent(hardwareCheckBox)
@@ -245,7 +392,7 @@ public class hw3 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(flowersCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(foodCheckBox)
+                .addComponent(foodCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(healthCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -346,6 +493,8 @@ public class hw3 extends javax.swing.JFrame {
             businessesTable.getColumnModel().getColumn(3).setPreferredWidth(1);
         }
 
+        subcategoriesPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout subcategoriesPanelLayout = new javax.swing.GroupLayout(subcategoriesPanel);
         subcategoriesPanel.setLayout(subcategoriesPanelLayout);
         subcategoriesPanelLayout.setHorizontalGroup(
@@ -410,7 +559,7 @@ public class hw3 extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(attributesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(businessesScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                        .addComponent(businessesScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         mainPanelLayout.setVerticalGroup(
@@ -471,8 +620,228 @@ public class hw3 extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void drugstoresCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugstoresCheckBoxActionPerformed
-        // TODO add your handling code here:
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_drugstoresCheckBoxActionPerformed
+
+    private void activeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_activeCheckBoxActionPerformed
+
+    private void artsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artsCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_artsCheckBoxActionPerformed
+
+    private void autoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_autoCheckBoxActionPerformed
+
+    private void carCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_carCheckBoxActionPerformed
+
+    private void cafesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cafesCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cafesCheckBoxActionPerformed
+
+    private void beautyCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beautyCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_beautyCheckBoxActionPerformed
+
+    private void convenienceCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convenienceCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_convenienceCheckBoxActionPerformed
+
+    private void dentistsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dentistsCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dentistsCheckBoxActionPerformed
+
+    private void doctorsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorsCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_doctorsCheckBoxActionPerformed
+
+    private void departmentCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_departmentCheckBoxActionPerformed
+
+    private void eduCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eduCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_eduCheckBoxActionPerformed
+
+    private void eventCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_eventCheckBoxActionPerformed
+
+    private void flowersCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flowersCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_flowersCheckBoxActionPerformed
+
+    private void foodCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_foodCheckBoxActionPerformed
+
+    private void healthCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healthCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_healthCheckBoxActionPerformed
+
+    private void homeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_homeCheckBoxActionPerformed
+
+    private void gardenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gardenCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_gardenCheckBoxActionPerformed
+
+    private void hospitalsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalsCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hospitalsCheckBoxActionPerformed
+
+    private void hotelsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelsCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hotelsCheckBoxActionPerformed
+
+    private void hardwareCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardwareCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_hardwareCheckBoxActionPerformed
+
+    private void groceryCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groceryCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_groceryCheckBoxActionPerformed
+
+    private void medicalCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_medicalCheckBoxActionPerformed
+
+    private void nurseriesCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nurseriesCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_nurseriesCheckBoxActionPerformed
+
+    private void nightlifeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nightlifeCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_nightlifeCheckBoxActionPerformed
+
+    private void restaurantsCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurantsCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_restaurantsCheckBoxActionPerformed
+
+    private void shoppingCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_shoppingCheckBoxActionPerformed
+
+    private void transportCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transportCheckBoxActionPerformed
+        try {
+            checkMainCategories();
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_transportCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -558,4 +927,62 @@ public class hw3 extends javax.swing.JFrame {
     private javax.swing.JComboBox toTime;
     private javax.swing.JCheckBox transportCheckBox;
     // End of variables declaration//GEN-END:variables
+
+    private Connection getConnection() throws SQLException {
+        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orclg", "scott", "tiger");
+        
+        return conn;
+    }
+    
+    private void checkMainCategories() throws SQLException {
+        ArrayList<String> list = new ArrayList<String>();
+        
+        /*if(activeCheckBox.isSelected()) {
+            list.add(activeCheckBox.getText());
+        }
+        */
+        
+        Component[] mainComp = mainCategoriesPanel.getComponents();
+        
+        for(Component comp : mainComp) {
+            if(comp instanceof javax.swing.JCheckBox) {
+                JCheckBox cb = (JCheckBox) comp;
+                if(cb.isSelected()) {
+                    list.add(cb.getText());
+                }
+            }
+        }
+        
+        if(list.size() > 0) {
+            String nestsql = "(SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" + list.get(0) + "'";
+            if(list.size() > 1) {
+                for(int i = 1; i < list.size(); i++) {
+                    nestsql += " OR BC.Category = '" + list.get(i) + "'";
+                }
+            }
+            nestsql += ") B2 ";
+            String sql = "SELECT DISTINCT B.Category FROM BusinessCategory B, " + nestsql + "WHERE B.businessid = B2.businessid ORDER BY B.category ASC";
+            
+            querySubCategories(sql);
+        }
+        else {
+            System.out.println("should be empty");
+            //clear the subcategory panel
+        }
+    }
+
+    private void querySubCategories(String sql) throws SQLException {
+        Connection conn = this.getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        while(rs.next()) {
+            System.out.println(rs.getString(1));
+            subcategoriesPanel.setLayout(new GridLayout(0,1));
+            JCheckBox jcb = new JCheckBox(rs.getString(1));
+            subcategoriesPanel.add(jcb);
+            subcategoriesPanel.setVisible(true);
+        }
+    }
 }
