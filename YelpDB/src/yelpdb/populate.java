@@ -19,7 +19,7 @@ import java.util.Map;
  * @author Timothy
  */
 public class populate {
-    public static void tableSetup() throws SQLException, FileNotFoundException, IOException {
+    public static void main(String[] args) throws SQLException, FileNotFoundException, IOException {
         /*try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException cnfe) {
@@ -29,17 +29,17 @@ public class populate {
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orclg", "scott", "tiger");
         System.out.println("Starting insertions...");
-        parseBusinesses(conn);
-        parseUsers(conn);
-        parseReviews(conn);
+        parseBusinesses(conn, args[0]);
+        parseUsers(conn, args[3]);
+        parseReviews(conn, args[1]);
         System.out.println("Insertions completed.");
         conn.close();
         
     }
 
-    private static void parseBusinesses(Connection conn) throws FileNotFoundException, IOException, SQLException {
+    private static void parseBusinesses(Connection conn, String file) throws FileNotFoundException, IOException, SQLException {
         //need to change directory and remove package to run without netbeans
-        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/yelp_business.json"));
+        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/" + file));
         String line = br.readLine();
         
         while(line != null) {
@@ -137,8 +137,8 @@ public class populate {
         }
     }
 
-    private static void parseUsers(Connection conn) throws FileNotFoundException, IOException, SQLException {
-        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/yelp_user.json"));
+    private static void parseUsers(Connection conn, String file) throws FileNotFoundException, IOException, SQLException {
+        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/" + file));
         String line = br.readLine();
         
         while(line != null) {
@@ -161,8 +161,8 @@ public class populate {
         ps.close();
     }
 
-    private static void parseReviews(Connection conn) throws FileNotFoundException, IOException, SQLException {
-        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/yelp_review.json"));
+    private static void parseReviews(Connection conn, String file) throws FileNotFoundException, IOException, SQLException {
+        BufferedReader br = new BufferedReader(new FileReader("src/yelpdb/" + file));
         String line = br.readLine();
         
         while(line != null) {

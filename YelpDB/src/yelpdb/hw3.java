@@ -29,12 +29,6 @@ public class hw3 extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        mainCategoriesPanel = new javax.swing.JPanel();
-        subcategoriesPanel = new javax.swing.JPanel();
-        attributesPanel = new javax.swing.JPanel();
-        businessesPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         searchButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         daySelection = new javax.swing.JComboBox();
@@ -45,43 +39,245 @@ public class hw3 extends javax.swing.JFrame {
         fromText = new javax.swing.JLabel();
         toText = new javax.swing.JLabel();
         attributeText = new javax.swing.JLabel();
+        mainCategoriesScroll = new javax.swing.JScrollPane();
+        mainCategoriesPanel = new javax.swing.JPanel();
+        activeCheckBox = new javax.swing.JCheckBox();
+        artsCheckBox = new javax.swing.JCheckBox();
+        autoCheckBox = new javax.swing.JCheckBox();
+        carCheckBox = new javax.swing.JCheckBox();
+        cafesCheckBox = new javax.swing.JCheckBox();
+        beautyCheckBox = new javax.swing.JCheckBox();
+        convenienceCheckBox = new javax.swing.JCheckBox();
+        dentistsCheckBox = new javax.swing.JCheckBox();
+        doctorsCheckBox = new javax.swing.JCheckBox();
+        drugstoresCheckBox = new javax.swing.JCheckBox();
+        departmentCheckBox = new javax.swing.JCheckBox();
+        eduCheckBox = new javax.swing.JCheckBox();
+        eventCheckBox = new javax.swing.JCheckBox();
+        flowersCheckBox = new javax.swing.JCheckBox();
+        foodCheckBox = new javax.swing.JCheckBox();
+        healthCheckBox = new javax.swing.JCheckBox();
+        homeCheckBox = new javax.swing.JCheckBox();
+        gardenCheckBox = new javax.swing.JCheckBox();
+        hospitalsCheckBox = new javax.swing.JCheckBox();
+        hotelsCheckBox = new javax.swing.JCheckBox();
+        hardwareCheckBox = new javax.swing.JCheckBox();
+        groceryCheckBox = new javax.swing.JCheckBox();
+        medicalCheckBox = new javax.swing.JCheckBox();
+        nurseriesCheckBox = new javax.swing.JCheckBox();
+        nightlifeCheckBox = new javax.swing.JCheckBox();
+        restaurantsCheckBox = new javax.swing.JCheckBox();
+        shoppingCheckBox = new javax.swing.JCheckBox();
+        transportCheckBox = new javax.swing.JCheckBox();
+        businessesScrollBar = new javax.swing.JScrollPane();
+        businessesTable = new javax.swing.JTable();
+        subcategoriesScrollBar = new javax.swing.JScrollPane();
+        subcategoriesPanel = new javax.swing.JPanel();
+        attributesScrollBar = new javax.swing.JScrollPane();
+        attributesPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        searchButton.setText("Search");
+
+        closeButton.setText("Close");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+
+        daySelection.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No selection", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" }));
+        daySelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                daySelectionActionPerformed(evt);
+            }
+        });
+
+        fromTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No selection", "0:00", "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" }));
+
+        toTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No selection", "0:00", "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" }));
+
+        attributeSelection.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Attributes", "Any Attributes" }));
+
+        dayText.setText("Day of the week:");
+
+        fromText.setText("From:");
+
+        toText.setText("To:");
+
+        attributeText.setText("Search for:");
+
+        mainCategoriesScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        activeCheckBox.setText("Active Life");
+
+        artsCheckBox.setText("Arts & Entertainment");
+
+        autoCheckBox.setText("Automotive");
+
+        carCheckBox.setText("Car Rental");
+
+        cafesCheckBox.setText("Cafes");
+
+        beautyCheckBox.setText("Beauty & Spas");
+
+        convenienceCheckBox.setText("Convenience Stores");
+
+        dentistsCheckBox.setText("Dentists");
+
+        doctorsCheckBox.setText("Doctors");
+
+        drugstoresCheckBox.setText("Drugstores");
+        drugstoresCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drugstoresCheckBoxActionPerformed(evt);
+            }
+        });
+
+        departmentCheckBox.setText("Department Stores");
+
+        eduCheckBox.setText("Education");
+
+        eventCheckBox.setText("Event Planning & Services");
+
+        flowersCheckBox.setText("Flowers & Gifts");
+
+        foodCheckBox.setText("Food");
+
+        healthCheckBox.setText("Health & Medical");
+
+        homeCheckBox.setText("Home Services");
+
+        gardenCheckBox.setText("Home & Garden");
+
+        hospitalsCheckBox.setText("Hospitals");
+
+        hotelsCheckBox.setText("Hotels & Travel");
+
+        hardwareCheckBox.setText("Hardware Stores");
+
+        groceryCheckBox.setText("Grocery");
+
+        medicalCheckBox.setText("Medical Centers");
+
+        nurseriesCheckBox.setText("Nurseries & Gardening");
+
+        nightlifeCheckBox.setText("Nightlife");
+
+        restaurantsCheckBox.setText("Restaurants");
+
+        shoppingCheckBox.setText("Shopping");
+
+        transportCheckBox.setText("Transportation");
 
         javax.swing.GroupLayout mainCategoriesPanelLayout = new javax.swing.GroupLayout(mainCategoriesPanel);
         mainCategoriesPanel.setLayout(mainCategoriesPanelLayout);
         mainCategoriesPanelLayout.setHorizontalGroup(
             mainCategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(mainCategoriesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainCategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainCategoriesPanelLayout.createSequentialGroup()
+                        .addGroup(mainCategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(homeCheckBox)
+                            .addComponent(gardenCheckBox)
+                            .addComponent(hospitalsCheckBox)
+                            .addComponent(hotelsCheckBox)
+                            .addComponent(groceryCheckBox)
+                            .addComponent(medicalCheckBox))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(mainCategoriesPanelLayout.createSequentialGroup()
+                        .addGroup(mainCategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(departmentCheckBox)
+                            .addComponent(eduCheckBox)
+                            .addComponent(eventCheckBox)
+                            .addComponent(carCheckBox)
+                            .addComponent(activeCheckBox)
+                            .addComponent(artsCheckBox)
+                            .addComponent(autoCheckBox)
+                            .addComponent(cafesCheckBox)
+                            .addComponent(beautyCheckBox)
+                            .addComponent(convenienceCheckBox)
+                            .addComponent(dentistsCheckBox)
+                            .addComponent(doctorsCheckBox)
+                            .addComponent(drugstoresCheckBox)
+                            .addComponent(flowersCheckBox)
+                            .addComponent(foodCheckBox)
+                            .addComponent(healthCheckBox)
+                            .addComponent(nurseriesCheckBox)
+                            .addComponent(hardwareCheckBox)
+                            .addComponent(nightlifeCheckBox)
+                            .addComponent(restaurantsCheckBox)
+                            .addComponent(shoppingCheckBox)
+                            .addComponent(transportCheckBox))
+                        .addGap(0, 154, Short.MAX_VALUE))))
         );
         mainCategoriesPanelLayout.setVerticalGroup(
             mainCategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(mainCategoriesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(activeCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(artsCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(autoCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(carCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cafesCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(beautyCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(convenienceCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dentistsCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(doctorsCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(drugstoresCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(departmentCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eduCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eventCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(flowersCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(foodCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(healthCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(homeCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gardenCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hospitalsCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hotelsCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hardwareCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(groceryCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(medicalCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nurseriesCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nightlifeCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(restaurantsCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(shoppingCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transportCheckBox)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout subcategoriesPanelLayout = new javax.swing.GroupLayout(subcategoriesPanel);
-        subcategoriesPanel.setLayout(subcategoriesPanelLayout);
-        subcategoriesPanelLayout.setHorizontalGroup(
-            subcategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        subcategoriesPanelLayout.setVerticalGroup(
-            subcategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
+        mainCategoriesScroll.setViewportView(mainCategoriesPanel);
 
-        javax.swing.GroupLayout attributesPanelLayout = new javax.swing.GroupLayout(attributesPanel);
-        attributesPanel.setLayout(attributesPanelLayout);
-        attributesPanelLayout.setHorizontalGroup(
-            attributesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        attributesPanelLayout.setVerticalGroup(
-            attributesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        businessesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -143,55 +339,38 @@ public class hw3 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(1);
+        businessesTable.getTableHeader().setReorderingAllowed(false);
+        businessesScrollBar.setViewportView(businessesTable);
+        if (businessesTable.getColumnModel().getColumnCount() > 0) {
+            businessesTable.getColumnModel().getColumn(2).setPreferredWidth(1);
+            businessesTable.getColumnModel().getColumn(3).setPreferredWidth(1);
         }
 
-        javax.swing.GroupLayout businessesPanelLayout = new javax.swing.GroupLayout(businessesPanel);
-        businessesPanel.setLayout(businessesPanelLayout);
-        businessesPanelLayout.setHorizontalGroup(
-            businessesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, businessesPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout subcategoriesPanelLayout = new javax.swing.GroupLayout(subcategoriesPanel);
+        subcategoriesPanel.setLayout(subcategoriesPanelLayout);
+        subcategoriesPanelLayout.setHorizontalGroup(
+            subcategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
-        businessesPanelLayout.setVerticalGroup(
-            businessesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+        subcategoriesPanelLayout.setVerticalGroup(
+            subcategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        searchButton.setText("Search");
+        subcategoriesScrollBar.setViewportView(subcategoriesPanel);
 
-        closeButton.setText("Close");
-        closeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeButtonActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout attributesPanelLayout = new javax.swing.GroupLayout(attributesPanel);
+        attributesPanel.setLayout(attributesPanelLayout);
+        attributesPanelLayout.setHorizontalGroup(
+            attributesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        attributesPanelLayout.setVerticalGroup(
+            attributesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        daySelection.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        daySelection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                daySelectionActionPerformed(evt);
-            }
-        });
-
-        fromTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        toTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        attributeSelection.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        dayText.setText("Day of the week:");
-
-        fromText.setText("From:");
-
-        toText.setText("To:");
-
-        attributeText.setText("Search for:");
+        attributesScrollBar.setViewportView(attributesPanel);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -200,10 +379,6 @@ public class hw3 extends javax.swing.JFrame {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(mainCategoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(subcategoriesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(daySelection, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,33 +390,42 @@ public class hw3 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(toText)
-                            .addComponent(toTime, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(toTime, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(attributesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(businessesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(mainCategoriesScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(subcategoriesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(attributeSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(attributeText))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(attributesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(businessesScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(businessesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(attributesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(subcategoriesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainCategoriesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(mainCategoriesScroll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(businessesScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(subcategoriesScrollBar)
+                    .addComponent(attributesScrollBar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,11 +449,14 @@ public class hw3 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -282,6 +469,10 @@ public class hw3 extends javax.swing.JFrame {
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void drugstoresCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugstoresCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_drugstoresCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,22 +510,52 @@ public class hw3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox activeCheckBox;
+    private javax.swing.JCheckBox artsCheckBox;
     private javax.swing.JComboBox attributeSelection;
     private javax.swing.JLabel attributeText;
     private javax.swing.JPanel attributesPanel;
-    private javax.swing.JPanel businessesPanel;
+    private javax.swing.JScrollPane attributesScrollBar;
+    private javax.swing.JCheckBox autoCheckBox;
+    private javax.swing.JCheckBox beautyCheckBox;
+    private javax.swing.JScrollPane businessesScrollBar;
+    private javax.swing.JTable businessesTable;
+    private javax.swing.JCheckBox cafesCheckBox;
+    private javax.swing.JCheckBox carCheckBox;
     private javax.swing.JButton closeButton;
+    private javax.swing.JCheckBox convenienceCheckBox;
     private javax.swing.JComboBox daySelection;
     private javax.swing.JLabel dayText;
+    private javax.swing.JCheckBox dentistsCheckBox;
+    private javax.swing.JCheckBox departmentCheckBox;
+    private javax.swing.JCheckBox doctorsCheckBox;
+    private javax.swing.JCheckBox drugstoresCheckBox;
+    private javax.swing.JCheckBox eduCheckBox;
+    private javax.swing.JCheckBox eventCheckBox;
+    private javax.swing.JCheckBox flowersCheckBox;
+    private javax.swing.JCheckBox foodCheckBox;
     private javax.swing.JLabel fromText;
     private javax.swing.JComboBox fromTime;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JCheckBox gardenCheckBox;
+    private javax.swing.JCheckBox groceryCheckBox;
+    private javax.swing.JCheckBox hardwareCheckBox;
+    private javax.swing.JCheckBox healthCheckBox;
+    private javax.swing.JCheckBox homeCheckBox;
+    private javax.swing.JCheckBox hospitalsCheckBox;
+    private javax.swing.JCheckBox hotelsCheckBox;
     private javax.swing.JPanel mainCategoriesPanel;
+    private javax.swing.JScrollPane mainCategoriesScroll;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JCheckBox medicalCheckBox;
+    private javax.swing.JCheckBox nightlifeCheckBox;
+    private javax.swing.JCheckBox nurseriesCheckBox;
+    private javax.swing.JCheckBox restaurantsCheckBox;
     private javax.swing.JButton searchButton;
+    private javax.swing.JCheckBox shoppingCheckBox;
     private javax.swing.JPanel subcategoriesPanel;
+    private javax.swing.JScrollPane subcategoriesScrollBar;
     private javax.swing.JLabel toText;
     private javax.swing.JComboBox toTime;
+    private javax.swing.JCheckBox transportCheckBox;
     // End of variables declaration//GEN-END:variables
 }
