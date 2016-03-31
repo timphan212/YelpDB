@@ -813,6 +813,8 @@ public class hw3 extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         String day, from, to;
+        DefaultTableModel table = (DefaultTableModel) businessesTable.getModel();
+        table.setRowCount(0);
         
         if(daySelection.getSelectedIndex() == 0) {
             day = null;
@@ -836,11 +838,13 @@ public class hw3 extends javax.swing.JFrame {
         ArrayList<String> sc = getCategories(subcategoriesPanel);
         ArrayList<String> att = getCategories(attributesPanel);
         
-        try {
-            queryBusinesses(sc, att, day, from ,to);
-        } catch (SQLException ex) {
-            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
-        }      
+        if(sc.size() > 0 && att.size() > 0) {
+            try {
+                queryBusinesses(sc, att, day, from ,to);
+            } catch (SQLException ex) {
+                Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+            }      
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
@@ -1039,7 +1043,7 @@ public class hw3 extends javax.swing.JFrame {
     }
     
     private void queryBusinesses(ArrayList<String> sc, ArrayList<String> att, String day, String from, String to) throws SQLException {
-        String scsql = null, attsql = null, hoursql = null;
+        String scsql = null, attsql = null, hoursql = null, sql = null;
         
         if(sc.size() > 0) {
             scsql = "SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" 
@@ -1086,11 +1090,20 @@ public class hw3 extends javax.swing.JFrame {
             if(from != null) {
                 hoursql += "BH.bopen < '" + from + "'";
             }
+            else {
+                hoursql = null;
+            }
         }
         
-        String sql = "SELECT DISTINCT B.name, B.city, B.bstate, B.rating FROM Businesses B, (" + scsql 
-                + ") B2, (" + hoursql + ") B3, (" + attsql 
-                + ") B4 WHERE B.businessid = B2.businessid AND B.businessid = B3.businessid AND B.businessid = B4.businessid ORDER BY B.name";
+        if(hoursql != null) {
+            sql = "SELECT DISTINCT B.name, B.city, B.bstate, B.rating FROM Businesses B, (" + scsql 
+                    + ") B2, (" + hoursql + ") B3, (" + attsql 
+                    + ") B4 WHERE B.businessid = B2.businessid AND B.businessid = B3.businessid AND B.businessid = B4.businessid ORDER BY B.name";
+        }
+        else {
+            sql = "SELECT DISTINCT B.name, B.city, B.bstate, B.rating FROM Businesses B, (" + scsql 
+                    + ") B2, (" + attsql + ") B3 WHERE B.businessid = B2.businessid AND B.businessid = B3.businessid ORDER BY B.name";
+        }
         Connection conn = getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
