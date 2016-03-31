@@ -8,6 +8,8 @@ package yelpdb;
 
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,6 +19,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -89,8 +96,19 @@ public class hw3 extends javax.swing.JFrame {
         attributesPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1100, 675));
+        setPreferredSize(new java.awt.Dimension(1200, 675));
+        getContentPane().setLayout(null);
+
+        mainPanel.setMinimumSize(new java.awt.Dimension(1080, 618));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1080, 618));
 
         searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setText("Close");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -426,46 +444,7 @@ public class hw3 extends javax.swing.JFrame {
 
         businessesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Business", "City", "State", "Stars"
@@ -499,11 +478,11 @@ public class hw3 extends javax.swing.JFrame {
         subcategoriesPanel.setLayout(subcategoriesPanelLayout);
         subcategoriesPanelLayout.setHorizontalGroup(
             subcategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
         );
         subcategoriesPanelLayout.setVerticalGroup(
             subcategoriesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 548, Short.MAX_VALUE)
         );
 
         subcategoriesScrollBar.setViewportView(subcategoriesPanel);
@@ -512,7 +491,7 @@ public class hw3 extends javax.swing.JFrame {
         attributesPanel.setLayout(attributesPanelLayout);
         attributesPanelLayout.setHorizontalGroup(
             attributesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
         );
         attributesPanelLayout.setVerticalGroup(
             attributesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,34 +525,34 @@ public class hw3 extends javax.swing.JFrame {
                         .addComponent(subcategoriesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(23, 23, 23)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(attributeSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(attributeText))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(4, 4, 4)
                         .addComponent(attributesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(businessesScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(businessesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(subcategoriesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(attributesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(mainCategoriesScroll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(businessesScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(subcategoriesScrollBar)
-                    .addComponent(attributesScrollBar))
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mainCategoriesScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(businessesScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -594,19 +573,8 @@ public class hw3 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(mainPanel);
+        mainPanel.setBounds(10, 0, 1150, 618);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -843,6 +811,38 @@ public class hw3 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_transportCheckBoxActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        String day, from, to;
+        
+        if(daySelection.getSelectedIndex() == 0) {
+            day = null;
+        }
+        else {
+            day = (String) daySelection.getItemAt(daySelection.getSelectedIndex());
+        }
+        if(fromTime.getSelectedIndex() == 0) {
+            from = null;
+        }
+        else {
+            from = (String) fromTime.getItemAt(fromTime.getSelectedIndex());
+        }
+        if(toTime.getSelectedIndex() == 0) {
+            to = null;
+        }
+        else {
+            to = (String) toTime.getItemAt(toTime.getSelectedIndex());
+        }
+        
+        ArrayList<String> sc = getCategories(subcategoriesPanel);
+        ArrayList<String> att = getCategories(attributesPanel);
+        
+        try {
+            queryBusinesses(sc, att, day, from ,to);
+        } catch (SQLException ex) {
+            Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+    }//GEN-LAST:event_searchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -936,16 +936,86 @@ public class hw3 extends javax.swing.JFrame {
     }
     
     private void checkMainCategories() throws SQLException {
-        ArrayList<String> list = new ArrayList<String>();
-        
-        /*if(activeCheckBox.isSelected()) {
-            list.add(activeCheckBox.getText());
+        ArrayList<String> list = getCategories(mainCategoriesPanel);
+        removeComponents(subcategoriesPanel, subcategoriesScrollBar);
+        removeComponents(attributesPanel, attributesScrollBar);
+
+        if(list.size() > 0) {
+            ArrayList<String> nestsqlList = new ArrayList<String>();
+            
+            for(int i = 0; i < list.size(); i++) {
+                nestsqlList.add("SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" + list.get(i) + "'");
+            }
+            
+            String nestsql = nestsqlList.get(0);
+            for(int i = 1; i < nestsqlList.size(); i++) {
+                nestsql += " INTERSECT " + nestsqlList.get(i);
+            }
+            String sql = "SELECT DISTINCT B.category FROM BusinessCategory B, (" + nestsql + ") B2 WHERE B.businessid = B2.businessid ORDER BY B.category ASC";
+            querySubCategories(sql);
         }
-        */
+    }
+
+    private void querySubCategories(String sql) throws SQLException {
+        Connection conn = this.getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        subcategoriesPanel.setLayout(new GridLayout(rs.getRow(),1));
         
-        Component[] mainComp = mainCategoriesPanel.getComponents();
+        while(rs.next()) {
+            JCheckBox jcb = new JCheckBox(rs.getString(1));
+            jcb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        checkSubcategories();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(hw3.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            subcategoriesPanel.add(jcb);
+            subcategoriesScrollBar.updateUI();
+        }
+    }
+    
+    private void checkSubcategories() throws SQLException{
+        ArrayList<String> list = getCategories(subcategoriesPanel);       
+        removeComponents(attributesPanel, attributesScrollBar);
         
-        for(Component comp : mainComp) {
+        if(list.size() > 0) {
+            ArrayList<String> nestsqlList = new ArrayList<String>();
+            
+            for(int i = 0; i < list.size(); i++) {
+                nestsqlList.add("SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" + list.get(i) + "'");
+            }
+            
+            String nestsql = nestsqlList.get(0);
+            for(int i = 1; i < nestsqlList.size(); i++) {
+                nestsql += " UNION " + nestsqlList.get(i);
+            }
+            String sql = "SELECT DISTINCT B.attribute, B.bool FROM BusinessAttributes B, (" + nestsql + ") B2 WHERE B.businessid = B2.businessid ORDER BY B.attribute ASC";
+            queryAttributes(sql);
+        }
+    }
+
+    private void queryAttributes(String sql) throws SQLException {
+        Connection conn = this.getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        attributesPanel.setLayout(new GridLayout(rs.getRow(),1));
+        
+        while(rs.next()) {
+            JCheckBox jcb = new JCheckBox(rs.getString(1) + ":" + rs.getString(2));
+            attributesPanel.add(jcb);
+            attributesScrollBar.updateUI();
+        }
+    }
+
+    private ArrayList<String> getCategories(JPanel panel) {
+        ArrayList<String> list = new ArrayList<String>();        
+       
+        for(Component comp : panel.getComponents()) {
             if(comp instanceof javax.swing.JCheckBox) {
                 JCheckBox cb = (JCheckBox) comp;
                 if(cb.isSelected()) {
@@ -954,35 +1024,80 @@ public class hw3 extends javax.swing.JFrame {
             }
         }
         
-        if(list.size() > 0) {
-            String nestsql = "(SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" + list.get(0) + "'";
-            if(list.size() > 1) {
-                for(int i = 1; i < list.size(); i++) {
-                    nestsql += " OR BC.Category = '" + list.get(i) + "'";
+        return list;
+    }
+    
+    private void removeComponents(JPanel panel, JScrollPane spanel) {
+        if(panel.getComponents().length > 0) {
+            for(Component comp : panel.getComponents()) {
+                if(comp instanceof JCheckBox) {
+                    panel.remove(comp);
                 }
             }
-            nestsql += ") B2 ";
-            String sql = "SELECT DISTINCT B.Category FROM BusinessCategory B, " + nestsql + "WHERE B.businessid = B2.businessid ORDER BY B.category ASC";
-            
-            querySubCategories(sql);
-        }
-        else {
-            System.out.println("should be empty");
-            //clear the subcategory panel
+            spanel.updateUI();
         }
     }
-
-    private void querySubCategories(String sql) throws SQLException {
-        Connection conn = this.getConnection();
+    
+    private void queryBusinesses(ArrayList<String> sc, ArrayList<String> att, String day, String from, String to) throws SQLException {
+        String scsql = null, attsql = null, hoursql = null;
+        
+        if(sc.size() > 0) {
+            scsql = "SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" 
+                    + sc.get(0) + "'";
+            
+            if(sc.size() > 1) {
+                for(int i = 1; i < sc.size(); i++) {
+                    scsql += " UNION SELECT DISTINCT BC.businessid FROM BusinessCategory BC WHERE BC.Category = '" 
+                            + sc.get(i) + "'";
+                }
+            }
+        }
+        if(att.size() > 0) {
+            String[] splitAtt = att.get(0).split(":");
+            attsql = "SELECT DISTINCT BA.businessid FROM BusinessAttributes BA WHERE BA.attribute = '" 
+                    + splitAtt[0] + "' AND BA.bool = '" + splitAtt[1] + "'";
+            
+            if(att.size() > 1) {
+                int condition = attributeSelection.getSelectedIndex();
+                
+                for(int i = 1; i < sc.size(); i++) {
+                   splitAtt = att.get(i).split(":");
+                   if(condition == 0) {
+                       attsql += " INTERSECT ";
+                   }
+                   else {
+                       attsql += " UNION ";
+                   }
+                   attsql += "SELECT DISTINCT BA.businessid FROM BusinessAttributes BA WHERE BA.attribute = '"
+                               + splitAtt[0] + "' AND BA.bool = '" + splitAtt[1] + "'";
+                }
+            }
+        }
+        
+        hoursql = "SELECT DISTINCT BH.businessid FROM BusinessHours BH WHERE ";
+        
+        if(day != null) {
+            hoursql += "BH.businessDay = '" + day + "'";
+            if(from != null) {
+                hoursql += " AND BH.bopen < '" + from + "'";
+            }
+        }
+        else {
+            if(from != null) {
+                hoursql += "BH.bopen < '" + from + "'";
+            }
+        }
+        
+        String sql = "SELECT DISTINCT B.name, B.city, B.bstate, B.rating FROM Businesses B, (" + scsql 
+                + ") B2, (" + hoursql + ") B3, (" + attsql 
+                + ") B4 WHERE B.businessid = B2.businessid AND B.businessid = B3.businessid AND B.businessid = B4.businessid ORDER BY B.name";
+        Connection conn = getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
+        DefaultTableModel table = (DefaultTableModel) businessesTable.getModel();
         
         while(rs.next()) {
-            System.out.println(rs.getString(1));
-            subcategoriesPanel.setLayout(new GridLayout(0,1));
-            JCheckBox jcb = new JCheckBox(rs.getString(1));
-            subcategoriesPanel.add(jcb);
-            subcategoriesPanel.setVisible(true);
+            table.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4)});
         }
     }
 }

@@ -1,0 +1,13 @@
+Timothy Phan
+CECS521 - Homework #3
+
+Compilation and running instructions:
+
+
+
+Notes:
+The program only checks the "From" time because I was unsure how I would handle the "To" time.
+I use the 24-hour clock and I was unsure how to compare the "To" time to businesses that close after
+23:00 hours. In order to display the subcategories, the subcategories must be associated with all the
+selected main categories. In order to display the attributes, the attributes can be associated with
+any selected subcategories.
