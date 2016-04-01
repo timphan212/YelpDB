@@ -666,6 +666,9 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="businessesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {&#xa;            @Override&#xa;            public void valueChanged(ListSelectionEvent e) {&#xa;                int row = businessesTable.getSelectedRow();&#xa;                &#xa;                if(row &gt;= 0 &amp;&amp; !e.getValueIsAdjusting() &amp;&amp; !businessesTable.getSelectionModel().isSelectionEmpty()) {&#xa;                    String name = businessesTable.getValueAt(row, 0).toString();&#xa;                    String city = businessesTable.getValueAt(row, 1).toString();&#xa;                    String state = businessesTable.getValueAt(row, 2).toString();&#xa;                    String rating = businessesTable.getValueAt(row, 3).toString();&#xa;                    try {&#xa;                        createReviewTable(name, city, state, rating);&#xa;                    } catch(Exception ex) { ex.printStackTrace(); }&#xa;                }&#xa;            }&#xa;        });"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

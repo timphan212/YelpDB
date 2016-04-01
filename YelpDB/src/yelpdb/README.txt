@@ -2,7 +2,8 @@ Timothy Phan
 CECS521 - Homework #3
 
 Compilation and running instructions:
-
+javac -cp .;ojdbc6.jar;gson-2.6.2.jar populate.java hw3.java
+java -cp yelpdb\*;. yelpdb.populate
 
 
 Notes:

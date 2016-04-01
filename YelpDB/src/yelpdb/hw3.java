@@ -6,24 +6,23 @@
 
 package yelpdb;
 
+import java.sql.*;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -33,7 +32,7 @@ public class hw3 extends javax.swing.JFrame {
 
     /**
      * Creates new form hw3
-     */
+     */    
     public hw3() {
         initComponents();
     }
@@ -466,6 +465,22 @@ public class hw3 extends javax.swing.JFrame {
             }
         });
         businessesTable.getTableHeader().setReorderingAllowed(false);
+        businessesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = businessesTable.getSelectedRow();
+
+                if(row >= 0 && !e.getValueIsAdjusting() && !businessesTable.getSelectionModel().isSelectionEmpty()) {
+                    String name = businessesTable.getValueAt(row, 0).toString();
+                    String city = businessesTable.getValueAt(row, 1).toString();
+                    String state = businessesTable.getValueAt(row, 2).toString();
+                    String rating = businessesTable.getValueAt(row, 3).toString();
+                    try {
+                        createReviewTable(name, city, state, rating);
+                    } catch(Exception ex) { ex.printStackTrace(); }
+                }
+            }
+        });
         businessesScrollBar.setViewportView(businessesTable);
         if (businessesTable.getColumnModel().getColumnCount() > 0) {
             businessesTable.getColumnModel().getColumn(2).setPreferredWidth(1);
@@ -933,7 +948,12 @@ public class hw3 extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Connection getConnection() throws SQLException {
-        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error loading driver: " + cnfe);
+        }
+        
         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orclg", "scott", "tiger");
         
         return conn;
@@ -1112,5 +1132,40 @@ public class hw3 extends javax.swing.JFrame {
         while(rs.next()) {
             table.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4)});
         }
+    }
+    
+    private void createReviewTable(String name, String city, String state, String rating) throws SQLException {
+        
+        String sql = "SELECT R.publishDate, R.rating, R.reviewText, Y.name, R.usefulVotes " +
+                     "FROM Businesses B, Reviews R, YelpUser Y " +
+                     "WHERE B.businessid = R.businessid AND R.author = Y.yelpid AND B.name = ?" + 
+                        "AND B.bstate = ? AND B.city = ? AND B.rating = ? ORDER BY R.publishdate DESC";
+        String columnNames[] = new String[] {"Date", "Rating", "Review Text", "Username", "Useful Votes"};
+        Connection conn = this.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, name);
+        ps.setString(2, state);
+        ps.setString(3, city);
+        ps.setDouble(4, Double.parseDouble(rating));
+        ResultSet rs = ps.executeQuery();
+        
+        JFrame frame = new JFrame("Reviews");
+        frame.setMinimumSize(new Dimension(1000, 500));
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(1,0));
+        JTable table = new JTable();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setColumnIdentifiers(columnNames);
+        JScrollPane scrollPane = new JScrollPane(table);
+        
+        while(rs.next()) {
+            model.addRow(new Object[]{rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
+        }
+        
+        panel.add(scrollPane);
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
+        
     }
 }

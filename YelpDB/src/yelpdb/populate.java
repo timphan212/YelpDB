@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
@@ -20,21 +19,22 @@ import java.util.Map;
  */
 public class populate {
     public static void main(String[] args) throws SQLException, FileNotFoundException, IOException {
-        /*try {
+        try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException cnfe) {
             System.out.println("Error loading driver: " + cnfe);
-        }*/
-        
-        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+        }
+        /*
         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orclg", "scott", "tiger");
+        System.out.println("Deleting previous data...");
+        deleteData(conn);
+        System.out.println("Delete completed.");
         System.out.println("Starting insertions...");
         parseBusinesses(conn, args[0]);
         parseUsers(conn, args[3]);
         parseReviews(conn, args[1]);
         System.out.println("Insertions completed.");
-        conn.close();
-        
+        conn.close();*/
     }
 
     private static void parseBusinesses(Connection conn, String file) throws FileNotFoundException, IOException, SQLException {
@@ -202,6 +202,21 @@ public class populate {
         ps.setInt(7, uvotes);
         ps.setInt(8, cvotes);
         ps.setString(9, text);
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    private static void deleteData(Connection conn) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("TRUNCATE TABLE ?");
+        ps.setString(1, "Businesses");
+        ps.executeUpdate();
+        ps.setString(1, "BusinessHours");
+        ps.executeUpdate();
+        ps.setString(1, "BusinessAttributes");
+        ps.executeUpdate();
+        ps.setString(1, "YelpUser");
+        ps.executeUpdate();
+        ps.setString(1, "Reviews");
         ps.executeUpdate();
         ps.close();
     }
