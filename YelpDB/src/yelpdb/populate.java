@@ -209,8 +209,8 @@ public class populate {
     }
     
     private static void deleteData(Connection conn) throws SQLException {
-        String sql = "DELETE FROM Businesses";
         Statement stmt = conn.createStatement();
+        String sql = "DELETE FROM Businesses";
         stmt.executeUpdate(sql);
         sql = "DELETE FROM BusinessHours";
         stmt.executeUpdate(sql);
