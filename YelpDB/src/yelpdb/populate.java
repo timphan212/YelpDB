@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class populate {
         } catch (ClassNotFoundException cnfe) {
             System.out.println("Error loading driver: " + cnfe);
         }
-        /*
+        
         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orclg", "scott", "tiger");
         System.out.println("Deleting previous data...");
         deleteData(conn);
@@ -34,7 +35,7 @@ public class populate {
         parseUsers(conn, args[3]);
         parseReviews(conn, args[1]);
         System.out.println("Insertions completed.");
-        conn.close();*/
+        conn.close();
     }
 
     private static void parseBusinesses(Connection conn, String file) throws FileNotFoundException, IOException, SQLException {

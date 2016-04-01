@@ -3,7 +3,8 @@ CECS521 - Homework #3
 
 Compilation and running instructions:
 javac -cp .;ojdbc6.jar;gson-2.6.2.jar populate.java hw3.java
-java -cp yelpdb\*;. yelpdb.populate
+java -cp \*; populate yelp_business.json yelp_review.json yelp_checkin.json yelp_user.json
+java -cp \*; hw3
 
 
 Notes:
