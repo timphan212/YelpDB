@@ -15,14 +15,14 @@ CREATE TABLE BusinessHours (
 	bopen VARCHAR2(10),
 	bclose VARCHAR(10),
 	PRIMARY KEY(businessID, businessDay),
-	FOREIGN KEY(businessID) REFERENCES Businesses(businessID)
+	FOREIGN KEY(businessID) REFERENCES Businesses(businessID) ON DELETE CASCADE
 );
 
 CREATE TABLE BusinessCategory (
 	businessID VARCHAR2(30),
 	category VARCHAR2(50),
 	PRIMARY KEY(businessID, category),
-	FOREIGN KEY(businessID) REFERENCES Businesses(businessID)
+	FOREIGN KEY(businessID) REFERENCES Businesses(businessID) ON DELETE CASCADE
 );
 
 CREATE TABLE BusinessAttributes (
@@ -30,7 +30,7 @@ CREATE TABLE BusinessAttributes (
 	attribute VARCHAR2(50),
 	bool VARCHAR2(25),
 	PRIMARY KEY(businessID, attribute),
-	FOREIGN KEY(businessID) REFERENCES Businesses(businessID)
+	FOREIGN KEY(businessID) REFERENCES Businesses(businessID) ON DELETE CASCADE
 );
 
 CREATE TABLE YelpUser (
@@ -48,7 +48,7 @@ CREATE TABLE Reviews (
 	usefulVotes INTEGER,
 	coolVotes INTEGER,
 	reviewText VARCHAR2(3000),
-	FOREIGN KEY(businessID) REFERENCES Businesses(businessID),
-	FOREIGN KEY(author) REFERENCES YelpUser(yelpID)
+	FOREIGN KEY(businessID) REFERENCES Businesses(businessID) ON DELETE CASCADE,
+	FOREIGN KEY(author) REFERENCES YelpUser(yelpID) ON DELETE CASCADE
 );
 

@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 /**
@@ -208,17 +209,19 @@ public class populate {
     }
     
     private static void deleteData(Connection conn) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("TRUNCATE TABLE ?");
-        ps.setString(1, "Businesses");
-        ps.executeUpdate();
-        ps.setString(1, "BusinessHours");
-        ps.executeUpdate();
-        ps.setString(1, "BusinessAttributes");
-        ps.executeUpdate();
-        ps.setString(1, "YelpUser");
-        ps.executeUpdate();
-        ps.setString(1, "Reviews");
-        ps.executeUpdate();
-        ps.close();
+        String sql = "TRUNCATE TABLE Businesses";
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(sql);
+        sql = "TRUNCATE TABLE BusinessHours";
+        stmt.executeUpdate(sql);
+        sql = "TRUNCATE TABLE BusinessCategory";
+        stmt.executeUpdate(sql);
+        sql = "TRUNCATE TABLE BusinessAttributes";
+        stmt.executeUpdate(sql);
+        sql = "TRUNCATE TABLE YelpUser";
+        stmt.executeUpdate(sql);
+        sql = "TRUNCATE TABLE Reviews";
+        stmt.executeUpdate(sql);
+        stmt.close();
     }
 }
