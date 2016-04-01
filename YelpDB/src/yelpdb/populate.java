@@ -209,18 +209,18 @@ public class populate {
     }
     
     private static void deleteData(Connection conn) throws SQLException {
-        String sql = "TRUNCATE TABLE Businesses";
+        String sql = "DELETE FROM Businesses";
         Statement stmt = conn.createStatement();
         stmt.executeUpdate(sql);
-        sql = "TRUNCATE TABLE BusinessHours";
+        sql = "DELETE FROM BusinessHours";
         stmt.executeUpdate(sql);
-        sql = "TRUNCATE TABLE BusinessCategory";
+        sql = "DELETE FROM BusinessCategory";
         stmt.executeUpdate(sql);
-        sql = "TRUNCATE TABLE BusinessAttributes";
+        sql = "DELETE FROM BusinessAttributes";
         stmt.executeUpdate(sql);
-        sql = "TRUNCATE TABLE YelpUser";
+        sql = "DELETE FROM YelpUser";
         stmt.executeUpdate(sql);
-        sql = "TRUNCATE TABLE Reviews";
+        sql = "DELETE FROM Reviews";
         stmt.executeUpdate(sql);
         stmt.close();
     }
